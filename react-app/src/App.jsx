@@ -4,6 +4,7 @@ function App() {
   const [time, setTime] = useState(new Date());
 
   useEffect(() => {
+    // Update time every second
     const timerId = setInterval(() => {
       setTime(new Date());
     }, 1000);
