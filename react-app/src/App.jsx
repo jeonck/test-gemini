@@ -1,22 +1,48 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
 
 function App() {
+  const [time, setTime] = useState(new Date());
+
+  useEffect(() => {
+    const timerId = setInterval(() => {
+      setTime(new Date());
+    }, 1000);
+
+    return () => clearInterval(timerId);
+  }, []);
+
+  const timezones = [
+    { name: 'London', tz: 'Europe/London' },
+    { name: 'New York', tz: 'America/New_York' },
+    { name: 'Seoul', tz: 'Asia/Seoul' },
+    { name: 'Tokyo', tz: 'Asia/Tokyo' },
+  ];
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 p-8">
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-bold text-white text-center mb-12">
-          🚀 test-github
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black p-8">
+      <div className="max-w-2xl mx-auto">
+        <h1 className="text-5xl font-bold text-white text-center mb-12 tracking-wider">
+          World Clock
         </h1>
 
-        {/* 여기에 프로젝트별 컨텐츠 추가 */}
-        <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20 shadow-xl">
-          <p className="text-white text-center">
-            Vite + React + Tailwind CSS App
-          </p>
+        <div className="space-y-6">
+          {timezones.map(({ name, tz }) => (
+            <div key={name} className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20 shadow-2xl">
+              <div className="flex justify-between items-center">
+                <h2 className="text-2xl font-semibold text-white">{name}</h2>
+                <p className="text-3xl font-mono text-green-400">
+                  {time.toLocaleTimeString('en-US', { timeZone: tz, hour12: false })}
+                </p>
+              </div>
+              <p className="text-right text-gray-400 mt-1">
+                {time.toLocaleDateString('en-US', { timeZone: tz, weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
