@@ -1,0 +1,10 @@
+{
+  "projectName": "test-gemini",
+  "githubRepoUrl": "https://github.com/jeonck/test-gemini",
+  "automationLevel": "full",
+  "techStack": "Vite + React + Tailwind",
+  "deployment": {
+    "platform": "github-pages",
+    "url": "https://jeonck.github.io/test-gemini/"
+  }
+}

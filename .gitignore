@@ -22,6 +22,3 @@ sketch
 ## Claude 
 .claude/
 CLAUDE.*
-settings.local.json
-GEMINI.*
-./gemini/
